@@ -1,5 +1,5 @@
 open Core
-open Jsonrpc
+open Lsp_json_rpc_types.Jsonrpc
 open Ppx_yojson_conv_lib.Yojson_conv.Primitives
 
 type json = Json.t

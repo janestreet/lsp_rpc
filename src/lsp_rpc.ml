@@ -1,6 +1,6 @@
 open Core
 open Async
-open Jsonrpc
+open Lsp_json_rpc_types.Jsonrpc
 include Lsp_rpc_intf
 module Rpc_error = Rpc_error
 
@@ -553,7 +553,7 @@ module Server = struct
   let call' t request = Implementation.call' t.implementation request
   let notify t notification = Implementation.notify t.implementation notification
 
-  let encoding ?(here = Stdlib.Lexing.dummy_pos) t =
+  let encoding ~(here : [%call_pos]) t =
     (* [t.encoding] is set before any client callback is invoked, so this should always
      succeed. If due to some bug it does not, we use [%call_pos] to attribute the location
      properly. *)

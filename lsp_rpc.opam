@@ -19,7 +19,7 @@ depends: [
   "ppx_yojson_conv"
   "dune"            {>= "3.11.0"}
   "jsonrpc"
-  "lsp"             {>= "1.18.0" & < "1.19.0"}
+  "lsp"
   "yojson"          {>= "1.7.0"}
 ]
 available: arch != "arm32" & arch != "x86_32"

@@ -44,8 +44,8 @@ let convert_offset
   ~text
   =
   let (module Utf : String.Utf with type t = utf) = text_encoding in
-  let from_index = ref 0 in
-  let to_index = ref 0 in
+  let local_ from_index = ref 0 in
+  let local_ to_index = ref 0 in
   Utf.fold_until
     text
     ~init:()
