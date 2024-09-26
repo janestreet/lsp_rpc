@@ -63,7 +63,7 @@ module On_client_termination = struct
            the pid may be known at startup. If the flag isn't supported or isn't passed,
            the pid can also be read from the client's [Initialize] request, but the field
            is optional. *)
-
+        
         { client_pid : [ `Pid of Pid.t | `Use_pid_in_initialize_request_if_provided ]
         ; poll_every : Time_ns.Span.t
         }
