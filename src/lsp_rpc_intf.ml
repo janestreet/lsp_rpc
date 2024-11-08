@@ -1,6 +1,6 @@
 open! Core
 open Async
-open Lsp_json_rpc_types.Jsonrpc
+open Jsonrpc
 
 (** LSP uses a bespoke protocol where each packet has a header with content type and
     length followed by a body that conforms to the JSON RPC 2.0 specification. This module
@@ -63,7 +63,6 @@ module On_client_termination = struct
            the pid may be known at startup. If the flag isn't supported or isn't passed,
            the pid can also be read from the client's [Initialize] request, but the field
            is optional. *)
-        
         { client_pid : [ `Pid of Pid.t | `Use_pid_in_initialize_request_if_provided ]
         ; poll_every : Time_ns.Span.t
         }

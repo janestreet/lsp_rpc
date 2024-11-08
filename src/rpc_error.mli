@@ -1,5 +1,5 @@
 open Core
-open Lsp_json_rpc_types.Jsonrpc
+open Jsonrpc
 
 (** [Fatal_parse_failure] happens when we receive a badly structured packet. Parsing stops
     and the [reader] and [writer] are closed.

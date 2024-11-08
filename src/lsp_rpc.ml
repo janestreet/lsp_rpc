@@ -1,6 +1,6 @@
 open Core
 open Async
-open Lsp_json_rpc_types.Jsonrpc
+open Jsonrpc
 include Lsp_rpc_intf
 module Rpc_error = Rpc_error
 
