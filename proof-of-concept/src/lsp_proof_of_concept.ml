@@ -47,7 +47,7 @@ module Server = struct
             let start = create_position ~col:start in
             let end_ = create_position ~col:end_ in
             let range = Range.create ~start ~end_ in
-            Diagnostic.create ~range ~message:"Illegal character: '$'" ()))
+            Diagnostic.create ~range ~message:(`String "Illegal character: '$'") ()))
       in
       let version =
         let open Option.Let_syntax in
@@ -103,6 +103,10 @@ module Server = struct
           | T (WorkDoneProgress _)
           | T (WorkDoneProgressCancel _)
           | T (UnknownNotification _)
+          | T (NotebookDocumentDidOpen _)
+          | T (NotebookDocumentDidChange _)
+          | T (NotebookDocumentDidSave _)
+          | T (NotebookDocumentDidClose _)
           | Invalid_params _ -> return ())
         ~on_request:
           { f =
@@ -160,6 +164,16 @@ module Server = struct
                 | WillCreateFiles _
                 | WillDeleteFiles _
                 | WillRenameFiles _
+                | InlayHintResolve _
+                | TextDocumentDiagnostic _
+                | TextDocumentInlineCompletion _
+                | TextDocumentInlineValue _
+                | TextDocumentPrepareTypeHierarchy _
+                | TextDocumentRangesFormatting _
+                | WorkspaceSymbolResolve _
+                | WorkspaceDiagnostic _
+                | TypeHierarchySubtypes _
+                | TypeHierarchySupertypes _
                 | UnknownRequest _ -> Deferred.Result.fail `Method_not_implemented)
           }
         ~on_error:Rpc_error.raise
@@ -212,6 +226,7 @@ module Client = struct
             | Warning -> "Warning"
             | Info -> "Info"
             | Log -> "Log"
+            | Debug -> "Debug"
           in
           Core.printf "[%s]: %s\n" type_ message;
           return ()
