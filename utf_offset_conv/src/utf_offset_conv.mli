@@ -1,8 +1,8 @@
 (** This library facilitates converting offsets in a Unicode string when they are
     expressed in the wrong units / encoding. An example use case is that you have some
     offset that was taken w.r.t. text when it was in UTF-16, but the text has since been
-    converted to UTF-8, and you want to find the corresponding offset. Or, conversely,
-    you have text that is currently in UTF-8 and have taken an offset, but know it will be
+    converted to UTF-8, and you want to find the corresponding offset. Or, conversely, you
+    have text that is currently in UTF-8 and have taken an offset, but know it will be
     converted into UTF-16 and want the offset to be valid after that happens. This sort of
     thing is common when interfacing with JavaScript environments, since js_of_ocaml
     performs string conversion automatically:

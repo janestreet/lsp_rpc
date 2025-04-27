@@ -17,7 +17,7 @@ depends: [
   "core_unix"
   "ppx_jane"
   "ppx_yojson_conv"
-  "dune"            {>= "3.11.0"}
+  "dune"            {>= "3.17.0"}
   "jsonrpc"         {= "1.19.0+jst"}
   "lsp"             {= "1.19.0+jst"}
   "yojson"          {>= "1.7.0"}

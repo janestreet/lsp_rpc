@@ -134,18 +134,18 @@ module type Lsp_rpc = sig
 
       Unicode notes:
       - Text is always sent between the client and server in UTF-8. This is specified in
-      the base protocol.
+        the base protocol.
       - Positions are expressed in terms of "code units" of the negotiated encoding. For
-      UTF-8, that means byte offsets. For UTF-16, that means 1 for 2-byte unicode scalars
-      and 2 for 4-byte unicode scalars (i.e., multiply by 2 to get the byte offset). The
-      [Text_document] module in the LSP library handles conversions w.r.t. the encoding.
-      For any direct usage of positions, including constructing positions to send back to
-      the client, you need to perform conversions yourself (since the text is UTF-8). The
-      [Utf_offset_conv] library can help with these conversions.
+        UTF-8, that means byte offsets. For UTF-16, that means 1 for 2-byte unicode
+        scalars and 2 for 4-byte unicode scalars (i.e., multiply by 2 to get the byte
+        offset). The [Text_document] module in the LSP library handles conversions w.r.t.
+        the encoding. For any direct usage of positions, including constructing positions
+        to send back to the client, you need to perform conversions yourself (since the
+        text is UTF-8). The [Utf_offset_conv] library can help with these conversions.
       - Because all ASCII characters are encoded in 1 byte in UTF-8 and 2 bytes in UTF-16,
-      the position's offset in ASCII text can be used directly as a byte index in the text
-      without any conversion. Therefore, if you don't handle conversions, lines with only
-      ASCII characters will still be interpreted properly. *)
+        the position's offset in ASCII text can be used directly as a byte index in the
+        text without any conversion. Therefore, if you don't handle conversions, lines
+        with only ASCII characters will still be interpreted properly. *)
   module Server : sig
     include
       Rpc

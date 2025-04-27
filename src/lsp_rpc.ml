@@ -327,7 +327,6 @@ struct
          implement it as a bus rather than as an ivar to allow listeners to unsubscribe,
          thereby avoiding a memory leak. *)
       Bus.create_exn
-        [%here]
         Arity1
         ~on_subscription_after_first_write:Raise
         ~on_callback_raise:Core.Error.raise
@@ -372,7 +371,7 @@ struct
       let subscriber =
         (* We subscribe to [t.connection_closed] before calling [write] to avoid a race
            where the write fails and we miss the message that the connection was closed. *)
-        Bus.subscribe_exn t.connection_closed [%here] ~f:(Ivar.fill_exn connection_closed)
+        Bus.subscribe_exn t.connection_closed ~f:(Ivar.fill_exn connection_closed)
       in
       let connection_closed = Ivar.read connection_closed in
       Io.write t.writer packet;
@@ -557,7 +556,7 @@ module Server = struct
     (* [t.encoding] is set before any client callback is invoked, so this should always
      succeed. If due to some bug it does not, we use [%call_pos] to attribute the location
      properly. *)
-    Set_once.get_exn t.encoding here
+    Set_once.get_exn t.encoding ~here
   ;;
 
   type request_handler =
@@ -622,7 +621,7 @@ module Server = struct
              | true -> `UTF_8
              | false -> `UTF_16
            in
-           Set_once.set_exn encoding [%here] position_encoding;
+           Set_once.set_exn encoding position_encoding;
            (match%map on_request (Initialize initialize) ~cancelled with
             | Error _ as error -> (error :> (a, _) Result.t)
             | Ok initialize_result ->
