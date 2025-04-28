@@ -66,7 +66,7 @@ module Server = struct
         reader
         writer
         ~on_notification:(fun notification ->
-          let t = Set_once.get_exn t_ref [%here] in
+          let t = Set_once.get_exn t_ref in
           match notification with
           | T (TextDocumentDidOpen { textDocument = { uri; text; version; _ } }) ->
             publish_diagnostics t ~uri ~text ~version |> Deferred.ignore_m
@@ -178,7 +178,7 @@ module Server = struct
           }
         ~on_error:Rpc_error.raise
     in
-    Set_once.set_exn t_ref [%here] t;
+    Set_once.set_exn t_ref t;
     t
   ;;
 end
