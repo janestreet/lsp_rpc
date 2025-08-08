@@ -318,22 +318,22 @@ let%expect_test "Basic test of LSP client/server communication" =
         {
           "message": "Illegal character: '$'",
           "range": {
-            "end": { "character": 11, "line": 1 },
-            "start": { "character": 10, "line": 1 }
+            "start": { "line": 1, "character": 10 },
+            "end": { "line": 1, "character": 11 }
           }
         },
         {
           "message": "Illegal character: '$'",
           "range": {
-            "end": { "character": 9, "line": 2 },
-            "start": { "character": 8, "line": 2 }
+            "start": { "line": 2, "character": 8 },
+            "end": { "line": 2, "character": 9 }
           }
         },
         {
           "message": "Illegal character: '$'",
           "range": {
-            "end": { "character": 17, "line": 3 },
-            "start": { "character": 14, "line": 3 }
+            "start": { "line": 3, "character": 14 },
+            "end": { "line": 3, "character": 17 }
           }
         }
       ],
@@ -345,8 +345,8 @@ let%expect_test "Basic test of LSP client/server communication" =
         {
           "message": "Illegal character: '$'",
           "range": {
-            "end": { "character": 12, "line": 0 },
-            "start": { "character": 11, "line": 0 }
+            "start": { "line": 0, "character": 11 },
+            "end": { "line": 0, "character": 12 }
           }
         }
       ],
@@ -419,8 +419,8 @@ let%expect_test "Test proper handling of UTF-8 and UTF-16" =
         {
           "message": "Illegal character: '$'",
           "range": {
-            "end": { "character": 4, "line": 0 },
-            "start": { "character": 3, "line": 0 }
+            "start": { "line": 0, "character": 3 },
+            "end": { "line": 0, "character": 4 }
           }
         }
       ],
@@ -438,8 +438,8 @@ let%expect_test "Test proper handling of UTF-8 and UTF-16" =
         {
           "message": "Illegal character: '$'",
           "range": {
-            "end": { "character": 6, "line": 0 },
-            "start": { "character": 5, "line": 0 }
+            "start": { "line": 0, "character": 5 },
+            "end": { "line": 0, "character": 6 }
           }
         }
       ],
