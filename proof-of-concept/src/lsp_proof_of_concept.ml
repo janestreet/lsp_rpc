@@ -102,6 +102,7 @@ module Server = struct
           | T (CancelRequest _)
           | T (WorkDoneProgress _)
           | T (WorkDoneProgressCancel _)
+          | T (CustomNotification _)
           | T (UnknownNotification _)
           | T (NotebookDocumentDidOpen _)
           | T (NotebookDocumentDidChange _)
