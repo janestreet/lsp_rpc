@@ -19,7 +19,7 @@ depends: [
   "ppx_jane"
   "ppx_yojson_conv"
   "dune"            {>= "3.17.0"}
-  "jsonrpc"
+  "jsonrpc"         {>= "1.18.0"}
   "lsp"             {>= "1.18.0"}
   "yojson"          {>= "1.7.0" & < "3.0.0"}
 ]
